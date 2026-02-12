@@ -1,0 +1,102 @@
+{
+  "python": "python",
+  "examples_dir": "examples",
+  "default_modes": {
+    "sync": [
+      "--disable-cudagraph",
+      "--cpu-queue-size",
+      "1",
+      "--gpu-queue-size",
+      "1",
+      "--h2d-streams",
+      "1"
+    ],
+    "async_only": [
+      "--disable-cudagraph",
+      "--cpu-queue-size",
+      "8",
+      "--gpu-queue-size",
+      "4",
+      "--h2d-streams",
+      "1"
+    ],
+    "shape_cuda_only": [
+      "--cpu-queue-size",
+      "1",
+      "--gpu-queue-size",
+      "1",
+      "--h2d-streams",
+      "1"
+    ],
+    "full": [
+      "--cpu-queue-size",
+      "8",
+      "--gpu-queue-size",
+      "4",
+      "--h2d-streams",
+      "1"
+    ]
+  },
+  "groups": [
+    {
+      "name": "tgat_wiki_talk",
+      "model": "tgat",
+      "entry": "tgat/async_train.py",
+      "dataset": "wiki-talk",
+      "gpu": 0,
+      "seeds": [
+        0
+      ],
+      "modes": [
+        "sync",
+        "full"
+      ],
+      "args": [
+        "--epochs",
+        "1",
+        "--bsize",
+        "2000",
+        "--n-threads",
+        "16",
+        "--n-layers",
+        "2",
+        "--n-heads",
+        "2",
+        "--n-nbrs",
+        "10",
+        "--sampling",
+        "recent"
+      ]
+    },
+    {
+      "name": "tgn_wiki_talk",
+      "model": "tgn",
+      "entry": "tgn/train.py",
+      "dataset": "wiki-talk",
+      "gpu": 0,
+      "seeds": [
+        0
+      ],
+      "modes": [
+        "sync",
+        "full"
+      ],
+      "args": [
+        "--epochs",
+        "1",
+        "--bsize",
+        "2000",
+        "--n-threads",
+        "16",
+        "--n-layers",
+        "2",
+        "--n-heads",
+        "2",
+        "--n-nbrs",
+        "10",
+        "--sampling",
+        "recent"
+      ]
+    }
+  ]
+}
